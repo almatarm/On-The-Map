@@ -16,6 +16,8 @@
 		44149F0B2268B34000650E26 /* UdacityErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44149F0A2268B34000650E26 /* UdacityErrorResponse.swift */; };
 		44149F0E2269D79200650E26 /* UdacityLoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44149F0D2269D79200650E26 /* UdacityLoginResponse.swift */; };
 		44149F112269F26000650E26 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44149F102269F26000650E26 /* LoginRequest.swift */; };
+		44149F15226A1D6800650E26 /* UIViewController+KeyboardAdjustmentSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44149F14226A1D6800650E26 /* UIViewController+KeyboardAdjustmentSupport.swift */; };
+		44149F17226B0B7900650E26 /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44149F16226B0B7900650E26 /* StyledButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		44149F0A2268B34000650E26 /* UdacityErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityErrorResponse.swift; sourceTree = "<group>"; };
 		44149F0D2269D79200650E26 /* UdacityLoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityLoginResponse.swift; sourceTree = "<group>"; };
 		44149F102269F26000650E26 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		44149F14226A1D6800650E26 /* UIViewController+KeyboardAdjustmentSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardAdjustmentSupport.swift"; sourceTree = "<group>"; };
+		44149F16226B0B7900650E26 /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,12 +66,12 @@
 		44149EF122675FFB00650E26 /* On the Map */ = {
 			isa = PBXGroup;
 			children = (
+				44149EF222675FFB00650E26 /* AppDelegate.swift */,
+				44149EFE22675FFC00650E26 /* Info.plist */,
 				44149F0722688B9100650E26 /* Model */,
 				44149F0622688B7D00650E26 /* View */,
-				44149EF222675FFB00650E26 /* AppDelegate.swift */,
 				44149F0522688B6000650E26 /* Controller */,
 				44149F042267613B00650E26 /* Assets */,
-				44149EFE22675FFC00650E26 /* Info.plist */,
 			);
 			path = "On the Map";
 			sourceTree = "<group>";
@@ -86,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				44149EF422675FFB00650E26 /* LoginViewController.swift */,
+				44149F14226A1D6800650E26 /* UIViewController+KeyboardAdjustmentSupport.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -93,6 +98,7 @@
 		44149F0622688B7D00650E26 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				44149F16226B0B7900650E26 /* StyledButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -100,7 +106,7 @@
 		44149F0722688B9100650E26 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				44149F082268A03000650E26 /* UdacityClient.swift */,
+				44149F18226B0C9900650E26 /* Client */,
 				44149F0F2269F24A00650E26 /* Request */,
 				44149F0C2269D77000650E26 /* Response */,
 			);
@@ -122,6 +128,14 @@
 				44149F102269F26000650E26 /* LoginRequest.swift */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		44149F18226B0C9900650E26 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				44149F082268A03000650E26 /* UdacityClient.swift */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,9 +212,11 @@
 				44149F0E2269D79200650E26 /* UdacityLoginResponse.swift in Sources */,
 				44149EF522675FFB00650E26 /* LoginViewController.swift in Sources */,
 				44149F0B2268B34000650E26 /* UdacityErrorResponse.swift in Sources */,
+				44149F17226B0B7900650E26 /* StyledButton.swift in Sources */,
 				44149F112269F26000650E26 /* LoginRequest.swift in Sources */,
 				44149EF322675FFB00650E26 /* AppDelegate.swift in Sources */,
 				44149F092268A03000650E26 /* UdacityClient.swift in Sources */,
+				44149F15226A1D6800650E26 /* UIViewController+KeyboardAdjustmentSupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

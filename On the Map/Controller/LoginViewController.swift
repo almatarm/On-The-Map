@@ -17,16 +17,20 @@ class LoginViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addKeyboardDismissSupport()
         
-        styleViews()
         emailTextField.text = ""
         passwordTextField.text = ""
     }
     
-    func styleViews() {
-        loginButton.layer.cornerRadius = 5
+    override func viewWillAppear(_ animated: Bool) {
+        addKeyboardAdjustmentSupport()
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        removeKeyboardAdjustmentSupport()
+    }
+    
     @IBAction func login(_ sender: Any) {
         changeLoginStatus(true)
         UdacityClient.login(username: emailTextField.text ?? "", password: passwordTextField.text ?? "") { success, error in

@@ -18,6 +18,9 @@
 		44149F112269F26000650E26 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44149F102269F26000650E26 /* LoginRequest.swift */; };
 		44149F15226A1D6800650E26 /* UIViewController+KeyboardAdjustmentSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44149F14226A1D6800650E26 /* UIViewController+KeyboardAdjustmentSupport.swift */; };
 		44149F17226B0B7900650E26 /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44149F16226B0B7900650E26 /* StyledButton.swift */; };
+		44149F1A226B7E4F00650E26 /* LocationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44149F19226B7E4F00650E26 /* LocationsListViewController.swift */; };
+		44149F1C226B8DF800650E26 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44149F1B226B8DF800650E26 /* LocationsViewController.swift */; };
+		44149F1E226B913500650E26 /* LocationsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44149F1D226B913500650E26 /* LocationsMapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		44149F102269F26000650E26 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		44149F14226A1D6800650E26 /* UIViewController+KeyboardAdjustmentSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardAdjustmentSupport.swift"; sourceTree = "<group>"; };
 		44149F16226B0B7900650E26 /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
+		44149F19226B7E4F00650E26 /* LocationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListViewController.swift; sourceTree = "<group>"; };
+		44149F1B226B8DF800650E26 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
+		44149F1D226B913500650E26 /* LocationsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsMapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +95,11 @@
 		44149F0522688B6000650E26 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				44149EF422675FFB00650E26 /* LoginViewController.swift */,
 				44149F14226A1D6800650E26 /* UIViewController+KeyboardAdjustmentSupport.swift */,
+				44149EF422675FFB00650E26 /* LoginViewController.swift */,
+				44149F1B226B8DF800650E26 /* LocationsViewController.swift */,
+				44149F19226B7E4F00650E26 /* LocationsListViewController.swift */,
+				44149F1D226B913500650E26 /* LocationsMapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -210,11 +219,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				44149F0E2269D79200650E26 /* UdacityLoginResponse.swift in Sources */,
+				44149F1C226B8DF800650E26 /* LocationsViewController.swift in Sources */,
+				44149F1A226B7E4F00650E26 /* LocationsListViewController.swift in Sources */,
 				44149EF522675FFB00650E26 /* LoginViewController.swift in Sources */,
 				44149F0B2268B34000650E26 /* UdacityErrorResponse.swift in Sources */,
 				44149F17226B0B7900650E26 /* StyledButton.swift in Sources */,
 				44149F112269F26000650E26 /* LoginRequest.swift in Sources */,
 				44149EF322675FFB00650E26 /* AppDelegate.swift in Sources */,
+				44149F1E226B913500650E26 /* LocationsMapViewController.swift in Sources */,
 				44149F092268A03000650E26 /* UdacityClient.swift in Sources */,
 				44149F15226A1D6800650E26 /* UIViewController+KeyboardAdjustmentSupport.swift in Sources */,
 			);

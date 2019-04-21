@@ -100,10 +100,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Locations Map View Controller-->
         <scene sceneID="wxq-Gu-c8v">
             <objects>
-                <viewController id="bOZ-Sa-blr" sceneMemberID="viewController">
+                <viewController id="bOZ-Sa-blr" customClass="LocationsMapViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tRx-LH-Pi3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -112,14 +112,23 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="On the Map" id="ACI-Zc-WKN">
-                                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Qes-rS-U7U"/>
+                                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Qes-rS-U7U">
+                                            <connections>
+                                                <action selector="logout:" destination="bOZ-Sa-blr" id="THf-3f-ngx"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <rightBarButtonItems>
                                             <barButtonItem systemItem="add" id="OzD-8f-XD1">
                                                 <connections>
+                                                    <action selector="addUser:" destination="bOZ-Sa-blr" id="SjF-Ds-iA3"/>
                                                     <segue destination="n19-OD-uCD" kind="presentation" id="uce-7k-PpZ"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem systemItem="refresh" id="Lhj-5p-nmD"/>
+                                            <barButtonItem systemItem="refresh" id="Lhj-5p-nmD">
+                                                <connections>
+                                                    <action selector="refresh:" destination="bOZ-Sa-blr" id="pDz-im-LKG"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
@@ -140,16 +149,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Ud-O5-nKc"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" selectedImage="icon_mapview-selected" id="NBj-Pc-87t"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon_mapview-selected" selectedImage="icon_mapview-selected" id="NBj-Pc-87t"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mk0-Tr-BI3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1788" y="-184"/>
         </scene>
-        <!--View Controller-->
+        <!--Locations List View Controller-->
         <scene sceneID="o0r-Cj-33y">
             <objects>
-                <viewController id="c2n-5n-X0i" sceneMemberID="viewController">
+                <viewController id="c2n-5n-X0i" customClass="LocationsListViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="btL-ZM-GKe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -158,14 +167,22 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="On the Map" id="WcQ-ec-23Q">
-                                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="9CZ-zy-Fq6"/>
+                                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="9CZ-zy-Fq6">
+                                            <connections>
+                                                <action selector="logout:" destination="c2n-5n-X0i" id="sO0-3s-5rg"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <rightBarButtonItems>
                                             <barButtonItem systemItem="add" id="btT-Pu-O0I">
                                                 <connections>
                                                     <segue destination="n19-OD-uCD" kind="presentation" id="NPW-jd-K88"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem systemItem="refresh" id="5kr-PO-e98"/>
+                                            <barButtonItem systemItem="refresh" id="5kr-PO-e98">
+                                                <connections>
+                                                    <action selector="refresh:" destination="c2n-5n-X0i" id="vN5-d8-957"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
@@ -187,7 +204,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lbd-hX-Sgf"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" selectedImage="icon_listview-selected" id="aVn-gX-KnV"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon_listview-selected" selectedImage="icon_listview-selected" id="aVn-gX-KnV"/>
+                    <connections>
+                        <outlet property="locationsTable" destination="yA4-wu-oH3" id="Px9-x5-AYi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FDO-Ua-5A2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -204,7 +224,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="bOZ-Sa-blr" kind="relationship" relationship="viewControllers" id="U07-P4-mEf"/>
-                        <segue destination="c2n-5n-X0i" kind="relationship" relationship="viewControllers" id="3Lw-qL-rpA"/>
+                        <segue destination="c2n-5n-X0i" kind="relationship" relationship="viewControllers" id="AR5-YY-uh2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BOI-90-ffN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -339,6 +359,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uce-7k-PpZ"/>
+        <segue reference="NPW-jd-K88"/>
     </inferredMetricsTieBreakers>
 </document>

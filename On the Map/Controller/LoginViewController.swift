@@ -34,6 +34,7 @@ class LoginViewController: UIViewController  {
     @IBAction func login(_ sender: Any) {
         changeLoginStatus(true)
         UdacityClient.login(username: emailTextField.text ?? "", password: passwordTextField.text ?? "") { success, error in
+            self.changeLoginStatus(false)
             if success {
                 self.performSegue(withIdentifier: "loginSuccess", sender: nil)
             } else {
@@ -59,7 +60,6 @@ class LoginViewController: UIViewController  {
         let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         show(alertVC, sender: nil)
-        changeLoginStatus(false)
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {

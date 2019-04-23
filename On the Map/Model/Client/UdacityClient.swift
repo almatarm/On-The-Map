@@ -11,8 +11,8 @@ import Foundation
 class UdacityClient {
     
     struct Auth {
-        static var userId = ""
-        static var sessionId = ""
+        static var userId = "897101849139"
+        static var sessionId = "8271437819S0e644800f2e9a89ba2c1451343839f97"
     }
     
     enum EndPoints {
@@ -36,67 +36,21 @@ class UdacityClient {
         }
     }
     
-    class func taskForGetRequest<ResponseType : Decodable>(
-        url: URL,
-        responseType: ResponseType.Type,
-        completion: @escaping (ResponseType?, Error?) -> Void ) -> URLSessionTask {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else {
-                DispatchQueue.main.async { completion(nil, error) }
-                return
-            }
-            let decoder = JSONDecoder()
-                do {
-                    let responseObject = try decoder.decode(responseType.self, from: data)
-                    DispatchQueue.main.async { completion(responseObject, nil) }
-                }  catch {
-                    do {
-                        let errorResponse = try decoder.decode(UdacityErrorResponse.self, from: data)
-                        DispatchQueue.main.async { completion(nil, errorResponse) }
-                    } catch {
-                        DispatchQueue.main.async { completion(nil, error) }
-                    }
-                }
-        }
-        task.resume()
-        return task
-    }
-    
     class func taskForPostRequest<RequestType: Encodable, ResponseType: Decodable>(
         url: URL,
         responseType: ResponseType.Type,
         body: RequestType,
         completion: @escaping (ResponseType?, Error?) -> Void) {
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = try! JSONEncoder().encode(body)
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard var data = data else {
-                DispatchQueue.main.async { completion(nil, error) }
-                return
-            }
-            
-            data = data[5..<data.count]
-            let decoder = JSONDecoder()
-            do {
-                let responseObject = try decoder.decode(responseType.self, from: data)
-                DispatchQueue.main.async { completion(responseObject, nil) }
-            }  catch {
-                do {
-                    let errorResponse = try decoder.decode(UdacityErrorResponse.self, from: data)
-                    DispatchQueue.main.async { completion(nil, errorResponse) }
-                } catch {
-                    DispatchQueue.main.async { completion(nil, error) }
-                }
-            }
-        }
-        task.resume()
+        WebAPIClient<UdacityErrorResponse>.taskForPostRequest(url: url, responseType: responseType, body: body, requestPostProcess: nil, responsePreprocess: responsePreprocess(data:), completion: completion)
     }
     
+    class func responsePreprocess(data: Data?) -> Data? {
+        if let data = data {
+            return data[5..<data.count]
+        }
+        return nil
+    }
     
     class func login(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
         taskForPostRequest(
@@ -127,7 +81,6 @@ class UdacityClient {
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
             Auth.userId = ""
-            Auth.sessionId = ""
             Auth.sessionId = ""
             completion()
         }

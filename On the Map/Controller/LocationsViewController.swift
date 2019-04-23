@@ -10,11 +10,19 @@ import Foundation
 import UIKit
 
 class LocationsViewController: UIViewController {
-    
+    var locations: [StudentLocation] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        ParseClient.getStudentLocations { (locs, error) in
+            self.locations = locs
+            self.reloadData()
+        }
+//        refresh(self)
+    }
+    
+    func reloadData() {
+        //Should be overriden by subcalss
     }
     
     @IBAction func logout(_ sender: Any) {
@@ -26,6 +34,10 @@ class LocationsViewController: UIViewController {
     }
     
     @IBAction func refresh(_ sender: Any) {
+        ParseClient.getStudentLocations { (locs, error) in
+            self.locations = locs
+            self.reloadData()
+        }
     }
     
     @IBAction func addUser(_ sender: Any) {

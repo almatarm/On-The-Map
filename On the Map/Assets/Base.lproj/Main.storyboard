@@ -319,7 +319,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rau-ak-LaR"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Location" id="7xq-PT-FmL"/>
+                    <navigationItem key="navigationItem" title="Add Location" id="7xq-PT-FmL">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PMz-s8-Ln9">
+                            <connections>
+                                <action selector="cancel:" destination="bke-Sg-hNE" id="9ds-4t-uWN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="link" destination="fVF-2C-g7r" id="Wac-1h-Bnx"/>
                         <outlet property="location" destination="Jfi-gR-WBp" id="gjf-ut-aBX"/>

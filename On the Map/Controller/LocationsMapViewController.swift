@@ -18,6 +18,7 @@ class LocationsMapViewController: LocationsViewController, MKMapViewDelegate {
     }
     
     override func reloadData() {
+        mapView.removeAnnotations(mapView.annotations)
         // We will create an MKPointAnnotation for each dictionary in "locations". The
         // point annotations    will be stored in this array, and then provided to the map view.
         var annotations = [MKPointAnnotation]()

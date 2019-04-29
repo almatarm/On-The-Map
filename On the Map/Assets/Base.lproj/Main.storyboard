@@ -264,7 +264,7 @@
         <!--Add Location-->
         <scene sceneID="gIE-ue-Fdt">
             <objects>
-                <viewController id="bke-Sg-hNE" sceneMemberID="viewController">
+                <viewController id="bke-Sg-hNE" customClass="InfoPostingViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Exk-Xw-9to">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -293,7 +293,7 @@
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="FIND LOCATION"/>
                                         <connections>
-                                            <segue destination="bzY-Dc-1gr" kind="show" id="aVI-Nd-jf9"/>
+                                            <action selector="findLocation:" destination="bke-Sg-hNE" eventType="touchUpInside" id="mdN-3k-Lyu"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -320,15 +320,20 @@
                         <viewLayoutGuide key="safeArea" id="Rau-ak-LaR"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="7xq-PT-FmL"/>
+                    <connections>
+                        <outlet property="link" destination="fVF-2C-g7r" id="Wac-1h-Bnx"/>
+                        <outlet property="location" destination="Jfi-gR-WBp" id="gjf-ut-aBX"/>
+                        <segue destination="bzY-Dc-1gr" kind="show" id="sOd-CT-O4y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FKY-WT-ec4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3354" y="134"/>
         </scene>
-        <!--View Controller-->
+        <!--Info Posting Map View Controller-->
         <scene sceneID="gwj-1F-WwV">
             <objects>
-                <viewController id="bzY-Dc-1gr" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoPostingMapViewController" id="bzY-Dc-1gr" customClass="InfoPostingMapViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z7z-zR-oGN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -358,6 +363,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cNF-JE-drq"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="cTn-Tf-u2r" id="rf4-qi-qhR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2W-EK-oaH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

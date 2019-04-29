@@ -28,12 +28,11 @@ class LocationsListViewController: LocationsViewController, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("CellForRow: " + String(indexPath.row))
         let cell = tableView.dequeueReusableCell(withIdentifier: LocationsListViewController.cellIdentifer)!
         
         let studentLocation = locations[indexPath.row]
         
-        cell.textLabel?.text = studentLocation.lastName + ", " + studentLocation.firstName
+        cell.textLabel?.text = studentLocation.lastName + ", " + studentLocation.firstName + ", " + studentLocation.mapString
         cell.detailTextLabel?.text = studentLocation.mediaURL
         cell.imageView?.image = UIImage(named: "icon_pin")
         return cell

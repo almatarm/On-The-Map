@@ -31,7 +31,6 @@ class WebAPIClient<ErrorResponse : Codable & LocalizedError> {
                 let responseObject = try decoder.decode(responseType.self, from: data)
                 DispatchQueue.main.async { completion(responseObject, nil) }
             }  catch {
-                debugPrint(error)
                 do {
                     let errorResponse = try decoder.decode(ErrorResponse.self, from: data)
                     DispatchQueue.main.async { completion(nil, errorResponse) }

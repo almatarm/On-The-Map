@@ -11,7 +11,7 @@ import Foundation
 class ParseClient {
     
     struct Params {
-        static let limit = 23
+        static let limit = 100
     }
     enum EndPoints {
         static let base = "https://parse.udacity.com/parse/classes"

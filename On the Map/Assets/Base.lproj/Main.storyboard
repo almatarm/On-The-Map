@@ -150,6 +150,9 @@
                         <viewLayoutGuide key="safeArea" id="5Ud-O5-nKc"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="icon_mapview-selected" selectedImage="icon_mapview-selected" id="NBj-Pc-87t"/>
+                    <connections>
+                        <outlet property="mapView" destination="I7X-62-Omh" id="RxZ-0R-4bW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mk0-Tr-BI3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -386,6 +389,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NPW-jd-K88"/>
+        <segue reference="uce-7k-PpZ"/>
     </inferredMetricsTieBreakers>
 </document>

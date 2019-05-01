@@ -36,6 +36,15 @@ class UdacityClient {
         }
     }
     
+    @discardableResult
+    class func taskForGetRequest<ResponseType : Decodable>(
+        url: URL,
+        responseType: ResponseType.Type,
+        completion: @escaping (ResponseType?, Error?) -> Void ) -> URLSessionTask {
+        return WebAPIClient<UdacityErrorResponse>.taskForGetRequest(url: url, responseType: responseType, requestPostProcess: nil, responsePreprocess: responsePreprocess(data:), completion: completion)
+    }
+    
+    
     class func taskForPostRequest<RequestType: Encodable, ResponseType: Decodable>(
         url: URL,
         responseType: ResponseType.Type,
@@ -85,6 +94,19 @@ class UdacityClient {
             completion()
         }
         task.resume()
+    }
+    
+    class func getPublicUserData(completion: @escaping (UdacityUser?, Error?) -> Void) {
+        print(EndPoints.userDataGet.url)
+        taskForGetRequest(
+            url: EndPoints.userDataGet.url,
+            responseType: UdacityUser.self) { user, error in
+                if let user = user {
+                    completion(user, nil)
+                } else {
+                    completion(nil, error)
+                }
+        }
     }
     
 }

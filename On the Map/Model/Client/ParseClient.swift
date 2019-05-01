@@ -65,4 +65,22 @@ class ParseClient {
             }
         }
     }
+    
+    class func getMyLocation(completion: @escaping (StudentLocation, Error?) -> Void) {
+        taskForGetRequest(url: EndPoints.locatoinsGet.url, responseType: StudentLocationResults.self) { response, error in
+            if let response = response, !response.results.isEmpty {
+                completion(response.results.first!, nil)
+            } else {
+                //Get first and last name from udacity
+                UdacityClient.getPublicUserData() { (user, error) in
+                    if let user = user {
+                        let studentLoc = StudentLocation(uniqueKey: user.uniqueKey, firstName: user.firstName, lastName: user.lastName)
+                        completion(studentLoc, nil)
+                    } else {
+                        completion(StudentLocation(uniqueKey: UdacityClient.Auth.userId, firstName: "", lastName: ""), nil)
+                    }
+                }
+            }
+        }
+    }
 }

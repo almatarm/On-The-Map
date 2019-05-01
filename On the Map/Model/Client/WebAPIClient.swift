@@ -104,5 +104,15 @@ extension KeyedDecodingContainer {
     public func decodeIfPresent<T: Decodable>(_ key: KeyedDecodingContainer.Key) throws -> T? {
         return try decodeIfPresent(T.self, forKey: key)
     }
+    
 }
 
+extension Encodable {
+    func prettyPrint() {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        if let data = try? JSONEncoder().encode(self) {
+            print(String(data: data, encoding: .utf8)!)
+        }
+    }
+}

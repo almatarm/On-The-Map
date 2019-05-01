@@ -33,6 +33,8 @@ class InfoPostingViewController: UIViewController {
                     let location = placemark.location!
                     let infoPostingMapVC = self.storyboard?.instantiateViewController(withIdentifier: "InfoPostingMapViewController") as! InfoPostingMapViewController
                     infoPostingMapVC.location = location
+                    infoPostingMapVC.mapString = self.location.text
+                    infoPostingMapVC.link = self.link.text
                     self.navigationController?.pushViewController(infoPostingMapVC, animated: true)
                 }
             }

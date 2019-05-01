@@ -30,4 +30,15 @@ final class StudentLocation: Codable {
         self.longitude = try map.decodeIfPresent(.longitude) ?? 0.0
     }
     
+    init(uniqueKey: String, firstName: String, lastName: String) {
+        self.objectId = ""
+        self.uniqueKey = uniqueKey
+        self.firstName = firstName
+        self.lastName = lastName
+        self.mapString = ""
+        self.mediaURL = ""
+        self.latitude = 0.0
+        self.longitude = 0.0
+    }
+    
 }

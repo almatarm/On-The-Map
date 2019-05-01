@@ -13,6 +13,8 @@ class InfoPostingMapViewController: UIViewController {
 
     
     var location: CLLocation!
+    var mapString: String!
+    var link: String!
     
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
@@ -23,17 +25,11 @@ class InfoPostingMapViewController: UIViewController {
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         self.mapView.setRegion(region, animated: true)
 
+        let annotation = MKPointAnnotation()
+        annotation.title = mapString
+        annotation.subtitle = link
+        annotation.coordinate = center
+        mapView.addAnnotation(annotation)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

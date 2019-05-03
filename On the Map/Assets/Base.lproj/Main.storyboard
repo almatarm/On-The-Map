@@ -152,6 +152,7 @@
                     <tabBarItem key="tabBarItem" title="" image="icon_mapview-selected" selectedImage="icon_mapview-selected" id="NBj-Pc-87t"/>
                     <connections>
                         <outlet property="mapView" destination="I7X-62-Omh" id="RxZ-0R-4bW"/>
+                        <outlet property="refresh" destination="Lhj-5p-nmD" id="kQu-IO-gds"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mk0-Tr-BI3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -236,6 +237,7 @@
                     <tabBarItem key="tabBarItem" title="" image="icon_listview-selected" selectedImage="icon_listview-selected" id="aVn-gX-KnV"/>
                     <connections>
                         <outlet property="locationsTable" destination="yA4-wu-oH3" id="Px9-x5-AYi"/>
+                        <outlet property="refresh" destination="5kr-PO-e98" id="9GU-hf-kjB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FDO-Ua-5A2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -309,13 +311,18 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="xhq-Si-Hex">
                                 <rect key="frame" x="161.5" y="167" width="52" height="67"/>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0vB-Wt-5et">
+                                <rect key="frame" x="177.5" y="418.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="HlH-fJ-5bn" firstAttribute="top" secondItem="xhq-Si-Hex" secondAttribute="bottom" constant="46.5" id="69y-l3-Qdb"/>
                             <constraint firstItem="HlH-fJ-5bn" firstAttribute="centerY" secondItem="Exk-Xw-9to" secondAttribute="centerY" id="Ylq-N6-NlM"/>
+                            <constraint firstItem="0vB-Wt-5et" firstAttribute="centerX" secondItem="Exk-Xw-9to" secondAttribute="centerX" id="hZS-CY-Ych"/>
                             <constraint firstItem="HlH-fJ-5bn" firstAttribute="centerX" secondItem="Exk-Xw-9to" secondAttribute="centerX" id="heP-ip-Rao"/>
                             <constraint firstItem="xhq-Si-Hex" firstAttribute="centerX" secondItem="Exk-Xw-9to" secondAttribute="centerX" id="keA-xN-GQ2"/>
+                            <constraint firstItem="0vB-Wt-5et" firstAttribute="top" secondItem="HlH-fJ-5bn" secondAttribute="bottom" constant="32" id="uwc-Yz-jQX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rau-ak-LaR"/>
                     </view>
@@ -327,6 +334,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="0vB-Wt-5et" id="hme-gd-umI"/>
+                        <outlet property="findLocationButton" destination="4jz-0J-DRp" id="XqA-xU-Z6T"/>
                         <outlet property="link" destination="fVF-2C-g7r" id="Wac-1h-Bnx"/>
                         <outlet property="location" destination="Jfi-gR-WBp" id="gjf-ut-aBX"/>
                         <segue destination="bzY-Dc-1gr" kind="show" id="sOd-CT-O4y"/>
@@ -406,6 +415,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uce-7k-PpZ"/>
+        <segue reference="NPW-jd-K88"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -75,8 +75,9 @@ class LocationsMapViewController: LocationsViewController, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
-            if let urlString =  view.annotation?.subtitle, let url = URL(string: urlString!) {
-                UIApplication.shared.open(url, options: [:])
+            if let urlString =  view.annotation?.subtitle {
+                let urlString2 = urlString!.starts(with: "http") ? urlString! : "http://" + urlString!
+                UIApplication.shared.open(URL(string: urlString2)!, options: [:])
             }
         }
     }

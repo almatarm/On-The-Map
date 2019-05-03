@@ -17,8 +17,6 @@ final class StudentInformation: Codable {
     var mediaURL: String
     var latitude: Double
     var longitude: Double
-    let createdAt: String
-    let updatedAt: String
     
     init(from decoder: Decoder) throws {
         let map = try decoder.container(keyedBy: CodingKeys.self)
@@ -30,8 +28,6 @@ final class StudentInformation: Codable {
         self.mediaURL = try map.decodeIfPresent(.mediaURL) ?? ""
         self.latitude = try map.decodeIfPresent(.latitude) ?? 0.0
         self.longitude = try map.decodeIfPresent(.longitude) ?? 0.0
-        self.createdAt = try map.decodeIfPresent(.createdAt) ?? ""
-        self.updatedAt = try map.decodeIfPresent(.updatedAt) ?? ""
     }
     
     init(uniqueKey: String, firstName: String, lastName: String) {
@@ -43,12 +39,10 @@ final class StudentInformation: Codable {
         self.mediaURL = ""
         self.latitude = 0.0
         self.longitude = 0.0
-        self.createdAt = ""
-        self.updatedAt = ""
     }
     
     enum CodingKeys: String, CodingKey {
-        case objectId, uniqueKey, firstName, lastName, mapString, mediaURL, latitude, longitude, createdAt, updatedAt
+        case objectId, uniqueKey, firstName, lastName, mapString, mediaURL, latitude, longitude
     }
     
     func encode(to encoder: Encoder) throws {
@@ -60,7 +54,5 @@ final class StudentInformation: Codable {
         try container.encode(mediaURL, forKey: .mediaURL)
         try container.encode(latitude, forKey: .latitude)
         try container.encode(longitude, forKey: .longitude)
-//        try container.encode(createdAt, forKey: .createdAt)
-//        try container.encode(updatedAt, forKey: .updatedAt)
     }
 }

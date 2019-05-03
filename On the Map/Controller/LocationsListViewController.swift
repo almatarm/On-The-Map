@@ -40,8 +40,9 @@ class LocationsListViewController: LocationsViewController, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let studentLocation = locations[indexPath.row]
-        if URL(string: studentLocation.mediaURL) != nil {
-            UIApplication.shared.open(URL(string: studentLocation.mediaURL)!, options: [:])
+        let urlString = studentLocation.mediaURL.starts(with: "http") ? studentLocation.mediaURL : "http://" + studentLocation.mediaURL
+        if URL(string: urlString) != nil {
+            UIApplication.shared.open(URL(string: urlString)!, options: [:])
         }
     }
 }

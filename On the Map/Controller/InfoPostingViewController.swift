@@ -13,14 +13,19 @@ class InfoPostingViewController: UIViewController {
 
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var link: UITextField!
+    @IBOutlet weak var findLocationButton: StyledButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     @IBAction func findLocation(_ sender: Any) {
+        networkRequestInProgress(true)
         if let addressString = location.text {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(addressString) { (placemarks, error) in
+                self.networkRequestInProgress(false)
                 if let _ = error  {
                     let alertVC = UIAlertController(title: "Location Not Found!", message: "\(addressString) not found!", preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -43,5 +48,18 @@ class InfoPostingViewController: UIViewController {
     
     @IBAction func cancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func networkRequestInProgress(_ isRequestInProgress: Bool) {
+        location.isEnabled = !isRequestInProgress
+        link.isEnabled = !isRequestInProgress
+        findLocationButton.isEnabled = !isRequestInProgress
+        activityIndicator.isHidden = !isRequestInProgress
+        
+        if isRequestInProgress {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
     }
 }

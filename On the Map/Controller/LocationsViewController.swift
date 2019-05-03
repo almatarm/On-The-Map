@@ -10,15 +10,16 @@ import Foundation
 import UIKit
 
 class LocationsViewController: UIViewController {
-    var locations: [StudentInformation] = []
+    
+    @IBOutlet weak var refresh: UIBarButtonItem!
+    
+    var locations: [StudentInformation]! {
+        return AppData.shared.locations
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        ParseClient.getStudentLocations { (locs, error) in
-            self.locations = locs
-            self.reloadData()
-        }
-//        refresh(self)
+        self.refresh(self)
     }
     
     func reloadData() {
@@ -34,8 +35,14 @@ class LocationsViewController: UIViewController {
     }
     
     @IBAction func refresh(_ sender: Any) {
-        ParseClient.getStudentLocations { (locs, error) in
-            self.locations = locs
+        refresh.isEnabled = false
+        AppData.shared.reload { (error) in
+            self.refresh.isEnabled = true
+            if let error = error {
+                let alertVC = UIAlertController(title: "Loading Data", message: error.localizedDescription, preferredStyle: .alert)
+                alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.show(alertVC, sender: nil)
+            }
             self.reloadData()
         }
     }

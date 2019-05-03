@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class LocationsViewController: UIViewController {
-    var locations: [StudentLocation] = []
+    var locations: [StudentInformation] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         

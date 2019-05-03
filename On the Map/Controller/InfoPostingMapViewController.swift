@@ -32,4 +32,24 @@ class InfoPostingMapViewController: UIViewController {
         mapView.addAnnotation(annotation)
     }
 
+    
+    
+    @IBAction func postStudentLocation(_ sender: Any) {
+        ParseClient.getMyStudentInformation { (location, error) in
+            location.mapString = self.mapString
+            location.longitude = self.location.coordinate.longitude
+            location.latitude = self.location.coordinate.latitude
+            location.mediaURL = self.link
+            
+            ParseClient.postStudentLocation(location: location) { (success, error) in
+                if success {
+                    self.dismiss(animated: true, completion: nil)
+                } else if let error = error {
+                    let alertVC = UIAlertController(title: "Posting Student", message: error.localizedDescription, preferredStyle: .alert)
+                    alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.show(alertVC, sender: nil)
+                }
+            }
+        }
+    }
 }

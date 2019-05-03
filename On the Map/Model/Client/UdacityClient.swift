@@ -97,7 +97,6 @@ class UdacityClient {
     }
     
     class func getPublicUserData(completion: @escaping (UdacityUser?, Error?) -> Void) {
-        print(EndPoints.userDataGet.url)
         taskForGetRequest(
             url: EndPoints.userDataGet.url,
             responseType: UdacityUser.self) { user, error in

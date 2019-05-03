@@ -43,6 +43,17 @@ class WebAPIClient<ErrorResponse : Codable & LocalizedError> {
         return task
     }
     
+    class func taskForPutRequest<RequestType: Encodable, ResponseType: Decodable>(
+        url: URL,
+        responseType: ResponseType.Type,
+        body: RequestType,
+        requestPostProcess: ((URLRequest) -> URLRequest)?,
+        responsePreprocess: ((Data?) -> Data?)?,
+        completion: @escaping (ResponseType?, Error?) -> Void) {
+        
+        taskForPostOrPutRequest(url: url, responseType: responseType, body: body, requestPostProcess: requestPostProcess, responsePreprocess: responsePreprocess, isPostMethod: false, completion: completion)
+    }
+    
     class func taskForPostRequest<RequestType: Encodable, ResponseType: Decodable>(
         url: URL,
         responseType: ResponseType.Type,
@@ -51,14 +62,26 @@ class WebAPIClient<ErrorResponse : Codable & LocalizedError> {
         responsePreprocess: ((Data?) -> Data?)?,
         completion: @escaping (ResponseType?, Error?) -> Void) {
         
+        taskForPostOrPutRequest(url: url, responseType: responseType, body: body, requestPostProcess: requestPostProcess, responsePreprocess: responsePreprocess, isPostMethod: true, completion: completion)
+    }
+    
+    class func taskForPostOrPutRequest<RequestType: Encodable, ResponseType: Decodable>(
+        url: URL,
+        responseType: ResponseType.Type,
+        body: RequestType,
+        requestPostProcess: ((URLRequest) -> URLRequest)?,
+        responsePreprocess: ((Data?) -> Data?)?,
+        isPostMethod: Bool,
+        completion: @escaping (ResponseType?, Error?) -> Void) {
+        
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = isPostMethod ? "POST" : "PUT"
         request.httpBody = try! JSONEncoder().encode(body)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         request = requestPostProcess?(request) ?? request
-        
+       // {"code":111,"error":"schema mismatch for StudentLocation.updatedAt; expected Date but got String"}
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard var data = data else {
                 DispatchQueue.main.async { completion(nil, error) }
@@ -105,14 +128,4 @@ extension KeyedDecodingContainer {
         return try decodeIfPresent(T.self, forKey: key)
     }
     
-}
-
-extension Encodable {
-    func prettyPrint() {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        if let data = try? JSONEncoder().encode(self) {
-            print(String(data: data, encoding: .utf8)!)
-        }
-    }
 }

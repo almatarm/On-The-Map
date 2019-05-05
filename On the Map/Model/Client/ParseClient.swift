@@ -24,7 +24,7 @@ class ParseClient {
         var urlString : String {
             switch self {
             case .locatoinsGet:
-                return "\(EndPoints.base)/StudentLocation?limit=\(Params.limit)"
+                return "\(EndPoints.base)/StudentLocation?limit=\(Params.limit)&order=-updateAt"
             case .userLocatoinGet(let key):
                 return "\(EndPoints.base)/StudentLocation?where=" + "{\"uniqueKey\":\"\(key)\"}".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             case .userLocationNew:

@@ -20,6 +20,11 @@ class WebAPIClient<ErrorResponse : Codable & LocalizedError> {
         request = requestPostProcess?(request) ?? request
        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let httpError = handleHttpResponseStatus(response: response) {
+                completion(nil, httpError)
+                return
+            }
+            
             guard var data = data else {
                 DispatchQueue.main.async { completion(nil, error) }
                 return
@@ -81,8 +86,12 @@ class WebAPIClient<ErrorResponse : Codable & LocalizedError> {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         request = requestPostProcess?(request) ?? request
-       // {"code":111,"error":"schema mismatch for StudentLocation.updatedAt; expected Date but got String"}
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let httpError = handleHttpResponseStatus(response: response) {
+                completion(nil, httpError)
+                return
+            }
+            
             guard var data = data else {
                 DispatchQueue.main.async { completion(nil, error) }
                 return
@@ -106,6 +115,23 @@ class WebAPIClient<ErrorResponse : Codable & LocalizedError> {
         task.resume()
     }
     
+    class func handleHttpResponseStatus(response: URLResponse?) -> Error? {
+        if let code = (response as? HTTPURLResponse)?.statusCode, !(code >= 200 && code < 300) {
+            switch(code) {
+            case 400:
+                return HttpReponseError.BadRequest
+            case 401:
+                return HttpReponseError.InvalidCredentials
+            case 403:
+                return HttpReponseError.Unauthorized
+            case 410:
+                return HttpReponseError.URLChanged
+            default:
+                return HttpReponseError.ServerError
+            }
+        }
+        return nil
+    }
 }
 
 
@@ -128,4 +154,30 @@ extension KeyedDecodingContainer {
         return try decodeIfPresent(T.self, forKey: key)
     }
     
+}
+
+
+enum HttpReponseError : Error {
+    case BadRequest
+    case InvalidCredentials
+    case Unauthorized
+    case URLChanged
+    case ServerError
+}
+
+extension HttpReponseError  : LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .BadRequest:
+            return NSLocalizedString("The server could not understand the request due to invalid syntax.", comment: "")
+        case .InvalidCredentials:
+            return NSLocalizedString("Provided credenials are invalid", comment: "")
+        case .Unauthorized:
+            return NSLocalizedString("You don't havve access right to the content", comment: "")
+        case .URLChanged:
+            return NSLocalizedString("Server error: url changed.", comment: "")
+        case .ServerError:
+            return NSLocalizedString("Unknow server error", comment: "")
+        }
+    }
 }

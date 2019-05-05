@@ -35,7 +35,8 @@ class InfoPostingMapViewController: UIViewController {
     
     
     @IBAction func postStudentLocation(_ sender: Any) {
-        ParseClient.getMyStudentInformation { (location, error) in
+        ParseClient.getMyStudentInformation { (stdLoc, error) in
+            var location = stdLoc
             location.mapString = self.mapString
             location.longitude = self.location.coordinate.longitude
             location.latitude = self.location.coordinate.latitude

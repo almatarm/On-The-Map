@@ -21,6 +21,20 @@ class InfoPostingViewController: UIViewController {
     }
 
     @IBAction func findLocation(_ sender: Any) {
+        if link.text!.isEmpty || location.text!.isEmpty {
+            let alertVC = UIAlertController(title: "Required", message: "All fields are required!", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+            return
+        }
+        
+         guard let urlString = link.text, let url = URL(string: urlString), !UIApplication.shared.canOpenURL(url) else {
+            let alertVC = UIAlertController(title: "LinkIn Link", message: "Enter a valid LinkIn url!", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+            return
+        }
+        
         networkRequestInProgress(true)
         if let addressString = location.text {
             let geocoder = CLGeocoder()
@@ -28,10 +42,6 @@ class InfoPostingViewController: UIViewController {
                 self.networkRequestInProgress(false)
                 if let _ = error  {
                     let alertVC = UIAlertController(title: "Location Not Found!", message: "\(addressString) not found!", preferredStyle: .alert)
-                    alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alertVC, animated: true, completion: nil)
-                } else if self.link.text == nil || self.link.text!.isEmpty {
-                    let alertVC = UIAlertController(title: "LinkIn Link", message: "Enter a valid LinkIn url!", preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alertVC, animated: true, completion: nil)
                 } else if let placemark = placemarks?[0] {
